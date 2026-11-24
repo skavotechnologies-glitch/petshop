@@ -320,28 +320,22 @@ export default function Hero() {
                       poster={ASSETS.videos.heroDog.poster}
                       onCanPlay={() => setVideoLoaded(true)}
                       onError={() => setVideoFailed(true)}
-                      className={`w-full h-full object-cover object-[92%_38%] scale-[1.35] filter contrast-[1.05] saturate-[1.1] brightness-[1.02] transition-opacity duration-700 ${
-                        videoLoaded ? 'opacity-100' : 'opacity-90'
+                      className={`w-full h-full object-cover object-[92%_38%] scale-[1.35] filter contrast-[1.05] saturate-[1.1] brightness-[1.02] transition-opacity duration-500 ${
+                        videoLoaded ? 'opacity-100' : 'opacity-95'
                       }`}
                     >
                       <source src={ASSETS.videos.heroDog.mp4} type="video/mp4" />
                       {ASSETS.videos.heroDog.fallbackMp4 && (
                         <source src={ASSETS.videos.heroDog.fallbackMp4} type="video/mp4" />
                       )}
-                      {/* Image fallback inside video tag */}
-                      <img
-                        src={ASSETS.pets.goldenPuppyHero}
-                        alt="Paws & Polish Golden Retriever"
-                        className="w-full h-full object-contain"
-                      />
                     </video>
 
-                    {/* Resilient fallback image if video fails */}
+                    {/* Resilient video frame fallback if video fails to decode */}
                     {videoFailed && (
                       <img
-                        src={ASSETS.pets.goldenPuppyHero}
-                        alt="Golden Retriever Puppy - Paws & Polish"
-                        className="absolute inset-0 w-full h-full object-contain"
+                        src={ASSETS.videos.heroDog.poster}
+                        alt="Golden Retriever - Paws & Polish"
+                        className="absolute inset-0 w-full h-full object-cover object-[92%_38%] scale-[1.35]"
                         loading="eager"
                       />
                     )}

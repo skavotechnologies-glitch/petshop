@@ -13,7 +13,7 @@ export const ASSETS = {
     heroDog: {
       mp4: '/videos/golden-retriever-hero.mp4',
       fallbackMp4: '/assets/videos/golden_toy.mp4',
-      poster: '/assets/pets/golden_puppy_hero.png',
+      poster: '/videos/golden-retriever-hero-poster.jpg',
       alt: 'Generated living cinematic Golden Retriever hero'
     },
     cinematic: {
