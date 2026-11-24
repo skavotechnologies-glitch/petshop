@@ -1,5 +1,5 @@
-// PAWORA — Central Asset Configuration
-// All video streams, high-res photography, and decorative assets live here.
+// PAWS & POLISH — Central Asset Configuration
+// Inspired by the luxury pet care brand reference
 
 export const ASSETS = {
   // ── Cinematic Background Videos ──────────────────────────────────────
@@ -7,7 +7,7 @@ export const ASSETS = {
     hero: {
       mp4: 'https://assets.mixkit.co/videos/preview/mixkit-dogs-playing-in-the-park-46346-large.mp4',
       poster: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1920&q=80',
-      alt: 'Happy golden dogs and pets running joyfully through sunlit nature'
+      alt: 'Happy golden retriever and pets running in nature'
     },
     cinematic: {
       mp4: 'https://assets.mixkit.co/videos/preview/mixkit-little-dog-getting-groomed-43093-large.mp4',
@@ -16,28 +16,18 @@ export const ASSETS = {
     }
   },
 
-  // ── High-Resolution Pet Imagery & Layered Compositions ───────────────
-  floating: {
-    dogHero: {
-      src: 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=80',
-      alt: 'Golden Retriever smiling with shiny coat'
-    },
-    catHero: {
-      src: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=900&q=80',
-      alt: 'Serene cat resting peacefully'
-    },
-    puppyPlay: {
-      src: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=900&q=80',
-      alt: 'Playful pup with tilted head'
-    },
-    catPlay: {
-      src: 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=900&q=80',
-      alt: 'Curious cat being gently groomed'
-    },
-    dogSpa: {
-      src: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=900&q=80',
-      alt: 'Clean pampered dog fresh out of salon bath'
-    }
+  // ── High-Resolution Pet Imagery & Cutouts ────────────────────────────
+  pets: {
+    // Primary Golden Retriever Puppy cutout for Hero (matches reference video)
+    goldenPuppyHero: '/assets/pets/golden_puppy_hero.png',
+    // Grooming section central dog cutout (matches reference video)
+    goldenGroomingCenter: '/assets/pets/golden_grooming_center.png',
+    // Editorial Dog
+    goldenEditorial: 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=80',
+    // Editorial Cat
+    catEditorial: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80',
+    // Puppy playing
+    puppyPlay: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80'
   },
 
   // ── Category Cover Visuals ───────────────────────────────────────────

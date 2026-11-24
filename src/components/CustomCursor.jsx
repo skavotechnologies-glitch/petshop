@@ -99,7 +99,7 @@ export default function CustomCursor() {
             transform: 'translate(-50%, -50%)',
             transition: 'opacity 0.4s ease-out, transform 0.4s ease-out'
           }}
-          className="absolute rounded-full bg-[#FFD66B] shadow-sm pointer-events-none"
+          className="absolute rounded-full bg-[#E8927C] shadow-sm pointer-events-none"
         />
       ))}
 
@@ -113,8 +113,8 @@ export default function CustomCursor() {
         }}
         className={`absolute w-10 h-10 rounded-full border-2 pointer-events-none transition-colors duration-200 ${
           isHovered
-            ? 'border-[#FF784F] bg-[#FF784F]/15 backdrop-blur-[1px]'
-            : 'border-[#234C3D]/30 bg-transparent'
+            ? 'border-[#E8927C] bg-[#E8927C]/20 backdrop-blur-[1px]'
+            : 'border-[#1B3329]/30 bg-transparent'
         }`}
       />
 
@@ -125,7 +125,7 @@ export default function CustomCursor() {
           top: `${position.y}px`,
           transform: `translate(-50%, -50%) scale(${isClicking ? 0.7 : 1})`,
         }}
-        className="absolute w-3.5 h-3.5 rounded-full bg-[#FF784F] shadow-warm pointer-events-none flex items-center justify-center text-[8px] text-white"
+        className="absolute w-4 h-4 rounded-full bg-[#E8927C] text-white border border-[#1B3329] shadow-peach pointer-events-none flex items-center justify-center text-[9px] font-bold"
       >
         🐾
       </div>

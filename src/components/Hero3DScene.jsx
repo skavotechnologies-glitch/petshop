@@ -53,13 +53,13 @@ function PuppyMascot({ isBarking, onClick }) {
       {/* Collar */}
       <mesh position={[0, 0.45, 0]}>
         <torusGeometry args={[0.55, 0.08, 16, 32]} />
-        <meshStandardMaterial color="#FF784F" roughness={0.3} metalness={0.2} />
+        <meshStandardMaterial color="#FFCC00" roughness={0.3} metalness={0.2} />
       </mesh>
 
       {/* Gold Tag on Collar */}
       <mesh position={[0, 0.32, 0.58]} rotation={[0.2, 0, 0]}>
         <cylinderGeometry args={[0.1, 0.1, 0.03, 16]} />
-        <meshStandardMaterial color="#FFD66B" roughness={0.2} metalness={0.8} />
+        <meshStandardMaterial color="#FACC15" roughness={0.2} metalness={0.8} />
       </mesh>
 
       {/* Tail */}
@@ -225,7 +225,7 @@ function FloatingStar({ position = [1.7, -0.2, 0.5] }) {
     <Float speed={2} rotationIntensity={1} floatIntensity={1.8}>
       <mesh ref={starRef} position={position} scale={0.28}>
         <octahedronGeometry args={[1, 0]} />
-        <meshStandardMaterial color="#FFD66B" roughness={0.1} metalness={0.8} />
+        <meshStandardMaterial color="#FFCC00" roughness={0.1} metalness={0.8} />
       </mesh>
     </Float>
   );
@@ -250,13 +250,13 @@ export default function Hero3DScene() {
     <div className="relative w-full h-[420px] sm:h-[480px] lg:h-[540px] flex items-center justify-center">
       {/* Interactive Speech Balloon */}
       {speechBubble && (
-        <div className="absolute top-4 sm:top-8 z-30 px-4 py-2 rounded-2xl bg-white shadow-elevated border-2 border-[#FF784F] text-[#234C3D] text-xs sm:text-sm font-extrabold animate-bounce flex items-center gap-1.5 pointer-events-none">
-          <span>Woof! Welcome to PAWORA! 🐾💖</span>
+        <div className="absolute top-4 sm:top-8 z-30 px-4 py-2 rounded-2xl bg-white shadow-elevated border-2 border-[#FFCC00] text-[#0A0A0A] text-xs sm:text-sm font-extrabold animate-bounce flex items-center gap-1.5 pointer-events-none">
+          <span>Woof! Welcome to PAWORA! 🐾💛</span>
         </div>
       )}
 
       {/* Interactive Tag Badge */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-[11px] font-bold text-[#234C3D] shadow-sm border border-gray-200 pointer-events-none flex items-center gap-1.5 whitespace-nowrap">
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 px-3 py-1 rounded-full bg-black/90 backdrop-blur-sm text-[11px] font-extrabold text-[#FFCC00] shadow-sm border border-[#FFCC00]/30 pointer-events-none flex items-center gap-1.5 whitespace-nowrap">
         <span className="text-sm">👆</span>
         <span>Tap Milo to play & wag tail!</span>
       </div>
@@ -270,8 +270,8 @@ export default function Hero3DScene() {
         {/* Three-point Studio Lighting */}
         <ambientLight intensity={0.8} />
         <directionalLight position={[5, 8, 5]} intensity={1.5} color="#FFF8E7" castShadow />
-        <directionalLight position={[-5, 3, -2]} intensity={0.6} color="#A7E8D0" />
-        <pointLight position={[0, -2, 2]} intensity={0.4} color="#FF784F" />
+        <directionalLight position={[-5, 3, -2]} intensity={0.6} color="#FEF08A" />
+        <pointLight position={[0, -2, 2]} intensity={0.4} color="#FFCC00" />
 
         {/* 3D Elements */}
         <PuppyMascot isBarking={isBarking} onClick={handlePetClick} />
@@ -287,7 +287,7 @@ export default function Hero3DScene() {
           scale={5}
           blur={2.4}
           far={3}
-          color="#234C3D"
+          color="#0A0A0A"
         />
       </Canvas>
     </div>

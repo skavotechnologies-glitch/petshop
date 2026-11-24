@@ -7,7 +7,7 @@ export default function WhatsAppButton() {
   // Clearly configurable placeholder WhatsApp contact
   const placeholderNumber = "919876543210";
   const defaultMessage = encodeURIComponent(
-    "Hello PAWORA! I would like to inquire about grooming services and pet products."
+    "Hello PAWS & POLISH! I would like to inquire about grooming services and pet products."
   );
   const whatsappUrl = `https://wa.me/${placeholderNumber}?text=${defaultMessage}`;
 
@@ -15,8 +15,8 @@ export default function WhatsAppButton() {
     <aside aria-label="WhatsApp quick chat" className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
       {/* Tooltip on hover */}
       {isHovered && (
-        <div className="hidden sm:block px-3.5 py-1.5 rounded-full bg-[#111827] text-white text-xs font-bold shadow-lg animate-fadeIn whitespace-nowrap">
-          <span>🐾 Chat with PAWORA</span>
+        <div className="hidden sm:block px-3.5 py-1.5 rounded-full bg-[#1B3329] text-white text-xs font-bold shadow-lg animate-fadeIn whitespace-nowrap">
+          <span>🐾 Chat with PAWS & POLISH</span>
         </div>
       )}
 

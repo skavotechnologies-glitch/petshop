@@ -39,7 +39,7 @@ export default function App() {
       <SmoothScroll>
         <ScrollToTop />
         <CustomCursor />
-        <div className="min-h-screen flex flex-col bg-[#FFF9F0]">
+        <div className="min-h-screen flex flex-col bg-white">
           {/* Navigation */}
           <Navbar onOpenSearch={() => setIsSearchOpen(true)} />
 

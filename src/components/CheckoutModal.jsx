@@ -22,7 +22,7 @@ export default function CheckoutModal({ isOpen, onClose }) {
   const handlePlaceOrder = (e) => {
     e.preventDefault();
 
-    const orderRef = `ORD-PWR-${Math.floor(100000 + Math.random() * 900000)}`;
+    const orderRef = `ORD-PNP-${Math.floor(100000 + Math.random() * 900000)}`;
 
     const orderData = {
       orderRef,
@@ -61,11 +61,11 @@ export default function CheckoutModal({ isOpen, onClose }) {
       <div className="bg-white w-full max-w-xl rounded-3xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col max-h-[90vh]">
         
         {/* Header */}
-        <div className="p-5 border-b border-gray-100 bg-[#FFF9F0] flex items-center justify-between">
+        <div className="p-5 border-b border-gray-100 bg-[#FAF6EE] flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-xl">🐾</span>
-            <h3 className="text-base font-extrabold text-[#234C3D]">
-              {orderComplete ? 'Demo Order Confirmed' : 'Simulated Checkout'}
+            <h3 className="text-base font-extrabold text-[#1B3329]">
+              {orderComplete ? 'Order Confirmed' : 'Checkout'}
             </h3>
           </div>
           <button
@@ -79,20 +79,20 @@ export default function CheckoutModal({ isOpen, onClose }) {
         {orderComplete ? (
           /* Order Confirmation View */
           <div className="p-8 text-center space-y-6 overflow-y-auto">
-            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-3xl shadow-sm">
-              <CheckCircle2 className="w-9 h-9" />
+            <div className="w-16 h-16 rounded-full bg-[#E8EFEA] text-[#1B3329] flex items-center justify-center mx-auto text-3xl shadow-sm">
+              <CheckCircle2 className="w-9 h-9 text-[#E8927C]" />
             </div>
 
             <div className="space-y-1">
-              <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">
-                Simulation Successful
+              <span className="px-3 py-1 rounded-full bg-[#FAF6EE] text-[#1B3329] text-xs font-bold border border-[#1B3329]/15">
+                Order Placed Successfully
               </span>
-              <h4 className="text-2xl font-extrabold text-[#234C3D]">Thank You for Spoiling Your Pet!</h4>
+              <h4 className="text-2xl font-extrabold text-[#1B3329]">Thank You for Spoiling Your Pet!</h4>
               <p className="text-xs text-gray-500">Order Reference: <strong>{orderComplete.orderRef}</strong></p>
             </div>
 
-            {/* Simulated Receipt */}
-            <div className="bg-[#FFF9F0] rounded-2xl p-5 text-left text-xs border border-gray-200 space-y-3">
+            {/* Receipt */}
+            <div className="bg-[#FAF6EE] rounded-2xl p-5 text-left text-xs border border-gray-200 space-y-3">
               <div className="flex justify-between text-gray-500 pb-2 border-b border-gray-200">
                 <span>Ship to: {orderComplete.shippingInfo.name}</span>
                 <span>{orderComplete.createdAt}</span>
@@ -107,41 +107,25 @@ export default function CheckoutModal({ isOpen, onClose }) {
                 ))}
               </div>
 
-              <div className="pt-2 border-t border-gray-200 flex justify-between font-extrabold text-[#234C3D] text-sm">
-                <span>Grand Total Paid (Simulated)</span>
+              <div className="pt-2 border-t border-gray-200 flex justify-between font-extrabold text-[#1B3329] text-sm">
+                <span>Grand Total Paid</span>
                 <span>₹{orderComplete.grandTotal}</span>
               </div>
             </div>
 
-            {/* Demonstration Notice */}
-            <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-[11px] text-amber-800 text-left flex items-start gap-2">
-              <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-              <span>
-                <strong>Demonstration Mode:</strong> This frontend checkout simulated your order. No real money has been charged and no physical package will be shipped.
-              </span>
-            </div>
-
             <button
               onClick={handleFinish}
-              className="w-full py-3.5 rounded-full bg-[#FF784F] hover:bg-[#E85F36] text-white text-xs font-bold transition-all shadow-md"
+              className="w-full py-3.5 rounded-full bg-[#E8927C] hover:bg-[#D97760] text-white text-xs font-bold transition-all shadow-peach"
             >
-              Continue Exploring PAWORA
+              Continue Exploring PAWS & POLISH
             </button>
           </div>
         ) : (
           /* Checkout Form */
           <form onSubmit={handlePlaceOrder} className="p-6 overflow-y-auto space-y-5">
-            {/* Disclaimer Alert */}
-            <div className="p-3 bg-blue-50 border border-blue-200 rounded-xl text-[11px] text-blue-800 flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0" />
-              <span>
-                Frontend Showcase Demo — feel free to test the checkout experience. No payment details required.
-              </span>
-            </div>
-
             {/* Delivery Address */}
             <div className="space-y-3">
-              <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#FF784F] flex items-center gap-1.5">
+              <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#E8927C] flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5" />
                 <span>Delivery Address</span>
               </h4>
@@ -154,7 +138,7 @@ export default function CheckoutModal({ isOpen, onClose }) {
                     required
                     value={shippingInfo.name}
                     onChange={(e) => setShippingInfo({ ...shippingInfo, name: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-[#FF784F]"
+                    className="w-full px-3 py-2 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-[#E8927C]"
                   />
                 </div>
                 <div className="col-span-2 sm:col-span-1">
@@ -164,7 +148,7 @@ export default function CheckoutModal({ isOpen, onClose }) {
                     required
                     value={shippingInfo.phone}
                     onChange={(e) => setShippingInfo({ ...shippingInfo, phone: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-[#FF784F]"
+                    className="w-full px-3 py-2 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-[#E8927C]"
                   />
                 </div>
                 <div className="col-span-2">
@@ -174,7 +158,7 @@ export default function CheckoutModal({ isOpen, onClose }) {
                     required
                     value={shippingInfo.address}
                     onChange={(e) => setShippingInfo({ ...shippingInfo, address: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-[#FF784F]"
+                    className="w-full px-3 py-2 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-[#E8927C]"
                   />
                 </div>
                 <div>
@@ -184,7 +168,7 @@ export default function CheckoutModal({ isOpen, onClose }) {
                     required
                     value={shippingInfo.city}
                     onChange={(e) => setShippingInfo({ ...shippingInfo, city: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-[#FF784F]"
+                    className="w-full px-3 py-2 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-[#E8927C]"
                   />
                 </div>
                 <div>
@@ -194,41 +178,41 @@ export default function CheckoutModal({ isOpen, onClose }) {
                     required
                     value={shippingInfo.pincode}
                     onChange={(e) => setShippingInfo({ ...shippingInfo, pincode: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-[#FF784F]"
+                    className="w-full px-3 py-2 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-[#E8927C]"
                   />
                 </div>
               </div>
             </div>
 
-            {/* Payment Options Simulation */}
+            {/* Payment Options */}
             <div className="space-y-3 pt-2 border-t border-gray-100">
-              <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#FF784F]">
-                Payment Method (Demonstration)
+              <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#E8927C]">
+                Payment Method
               </h4>
               <div className="grid grid-cols-2 gap-3">
-                <label className="p-3 rounded-xl border-2 border-[#FF784F] bg-[#FFF0EC]/50 flex items-center gap-2 cursor-pointer text-xs font-bold text-[#234C3D]">
-                  <input type="radio" name="payment" defaultChecked className="accent-[#FF784F]" />
+                <label className="p-3 rounded-xl border-2 border-[#E8927C] bg-[#FAF6EE] flex items-center gap-2 cursor-pointer text-xs font-bold text-[#1B3329]">
+                  <input type="radio" name="payment" defaultChecked className="accent-[#E8927C]" />
                   <span>💵 Cash on Delivery</span>
                 </label>
                 <label className="p-3 rounded-xl border border-gray-200 hover:border-gray-300 flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-600">
-                  <input type="radio" name="payment" className="accent-[#FF784F]" />
+                  <input type="radio" name="payment" className="accent-[#E8927C]" />
                   <span>⚡ UPI / QR Scan</span>
                 </label>
               </div>
             </div>
 
             {/* Order Total & Submit */}
-            <div className="p-4 rounded-2xl bg-[#FFF9F0] border border-gray-200 flex items-center justify-between">
+            <div className="p-4 rounded-2xl bg-[#FAF6EE] border border-gray-200 flex items-center justify-between">
               <div>
                 <span className="text-[11px] text-gray-500">Total Due:</span>
-                <div className="text-lg font-extrabold text-[#234C3D]">₹{grandTotal}</div>
+                <div className="text-lg font-extrabold text-[#1B3329]">₹{grandTotal}</div>
               </div>
 
               <button
                 type="submit"
-                className="px-7 py-3 rounded-full bg-[#FF784F] hover:bg-[#E85F36] text-white text-xs font-bold shadow-warm transition-all"
+                className="px-7 py-3 rounded-full bg-[#E8927C] hover:bg-[#D97760] text-white text-xs font-bold shadow-peach transition-all"
               >
-                Place Demo Order
+                Place Order
               </button>
             </div>
           </form>

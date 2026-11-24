@@ -6,19 +6,19 @@ export default function GallerySection() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   return (
-    <section id="gallery" className="py-20 lg:py-28 bg-[#FFF9F0] relative">
+    <section id="gallery" className="py-20 lg:py-28 bg-[#FAF6EE] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFF0EC] text-[#FF784F] text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1B3329]/10 text-[#1B3329] text-xs font-bold uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-[#E8927C]" />
             <span>Visual Diary</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#234C3D] tracking-tight font-display">
-            Little Moments. <span className="text-[#FF784F]">Big Happiness.</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1B3329] tracking-tight font-display">
+            Little Moments. <span className="text-[#E8927C]">Big Happiness.</span>
           </h2>
-          <p className="text-sm sm:text-base text-[#252525]/75 leading-relaxed">
+          <p className="text-sm sm:text-base text-[#1A2420]/75 leading-relaxed">
             Real snaps from our salon floor: clean coats, joyful tail wags, peaceful cats, and warm hugs between groomers and pets.
           </p>
         </div>
@@ -29,7 +29,7 @@ export default function GallerySection() {
             <div
               key={img.id}
               onClick={() => setSelectedImage(img)}
-              className="relative aspect-square rounded-3xl overflow-hidden cursor-pointer group shadow-soft hover:shadow-elevated transition-all duration-300 hover:-translate-y-1.5 border-2 border-white bg-gray-100"
+              className="relative aspect-square rounded-3xl overflow-hidden cursor-pointer group shadow-soft hover:shadow-peach transition-all duration-300 hover:-translate-y-1.5 border-2 border-white bg-gray-100"
             >
               <img
                 src={img.image}
@@ -62,48 +62,53 @@ export default function GallerySection() {
           ))}
         </div>
 
-        {/* Lightbox Modal */}
-        {selectedImage && (
+      </div>
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div
+          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn"
+        >
           <div
-            onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn"
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-3xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl animate-scale"
           >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="relative max-w-2xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl animate-scale"
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition-colors"
             >
-              <button
+              <X className="w-5 h-5" />
+            </button>
+
+            <img
+              src={selectedImage.image}
+              alt={selectedImage.title}
+              className="w-full max-h-[70vh] object-cover"
+            />
+
+            <div className="p-6 bg-white flex items-center justify-between">
+              <div>
+                <span className="px-3 py-1 rounded-full bg-[#FAF6EE] text-[#1B3329] text-xs font-bold uppercase tracking-wider">
+                  {selectedImage.badge}
+                </span>
+                <h3 className="text-xl font-extrabold text-[#1B3329] mt-2 font-display">
+                  {selectedImage.title}
+                </h3>
+                <p className="text-xs text-gray-600 mt-1">{selectedImage.caption}</p>
+              </div>
+
+              <a
+                href="#booking"
                 onClick={() => setSelectedImage(null)}
-                aria-label="Close image"
-                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 text-white flex items-center justify-center transition-colors shadow-lg"
+                className="px-5 py-2.5 rounded-full bg-[#E8927C] hover:bg-[#D97760] text-white text-xs font-bold shadow-peach transition-all whitespace-nowrap"
               >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="aspect-[4/3] bg-black">
-                <img
-                  src={selectedImage.image}
-                  alt={selectedImage.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="p-6 bg-white space-y-2">
-                <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-0.5 rounded-full bg-[#FFF0EC] text-[#FF784F] text-[10px] font-extrabold uppercase">
-                    {selectedImage.category}
-                  </span>
-                  <span className="text-xs text-gray-400">•</span>
-                  <span className="text-xs text-gray-500 font-semibold">{selectedImage.badge}</span>
-                </div>
-                <h3 className="text-xl font-extrabold text-[#234C3D]">{selectedImage.title}</h3>
-                <p className="text-xs text-[#252525]/80 leading-relaxed">{selectedImage.caption}</p>
-              </div>
+                Book This Look
+              </a>
             </div>
           </div>
-        )}
-
-      </div>
+        </div>
+      )}
     </section>
   );
 }

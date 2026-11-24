@@ -35,13 +35,13 @@ export default function CartDrawer() {
       <div className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-white shadow-2xl flex flex-col justify-between overflow-hidden animate-slideLeft">
         
         {/* Drawer Header */}
-        <div className="p-5 border-b border-gray-100 flex items-center justify-between bg-[#FFF9F0]">
+        <div className="p-5 border-b border-gray-100 flex items-center justify-between bg-[#FAF6EE]">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-[#FF784F] text-white flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-[#E8927C] text-white flex items-center justify-center">
               <ShoppingBag className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-base font-extrabold text-[#234C3D]">Your Shopping Bag</h3>
+              <h3 className="text-base font-extrabold text-[#1B3329]">Your Shopping Bag</h3>
               <p className="text-xs text-gray-500 font-medium">{totalItems} {totalItems === 1 ? 'item' : 'items'}</p>
             </div>
           </div>
@@ -56,9 +56,9 @@ export default function CartDrawer() {
         </div>
 
         {/* Free Shipping Progress Indicator */}
-        <div className="px-5 py-3.5 bg-[#E6F1E9] border-b border-[#234C3D]/10">
+        <div className="px-5 py-3.5 bg-[#E8EFEA] border-b border-[#1B3329]/10">
           <div className="flex items-center justify-between text-xs mb-1.5">
-            <span className="font-bold text-[#234C3D] flex items-center gap-1.5">
+            <span className="font-bold text-[#1B3329] flex items-center gap-1.5">
               <span>🚚</span>
               {isFreeShipping ? (
                 <span className="text-emerald-700 font-extrabold">You unlocked Free Delivery!</span>
@@ -66,11 +66,11 @@ export default function CartDrawer() {
                 <span>Add ₹{amountNeededForFreeShipping} more for Free Delivery</span>
               )}
             </span>
-            <span className="font-bold text-[#234C3D]">{shippingProgress}%</span>
+            <span className="font-bold text-[#1B3329]">{shippingProgress}%</span>
           </div>
           <div className="w-full h-2 rounded-full bg-white/70 overflow-hidden">
             <div
-              className="h-full bg-[#FF784F] rounded-full transition-all duration-300"
+              className="h-full bg-[#E8927C] rounded-full transition-all duration-300"
               style={{ width: `${shippingProgress}%` }}
             />
           </div>
@@ -80,16 +80,16 @@ export default function CartDrawer() {
         <div className="p-5 overflow-y-auto flex-1 space-y-4">
           {cart.length === 0 ? (
             <div className="py-20 text-center space-y-4">
-              <div className="w-20 h-20 rounded-full bg-[#FFF9F0] text-4xl flex items-center justify-center mx-auto shadow-inner">
+              <div className="w-20 h-20 rounded-full bg-[#FAF6EE] text-4xl flex items-center justify-center mx-auto shadow-inner">
                 🐾
               </div>
-              <h4 className="text-base font-bold text-[#234C3D]">Your bag is feeling light</h4>
+              <h4 className="text-base font-bold text-[#1B3329]">Your bag is feeling light</h4>
               <p className="text-xs text-gray-500 max-w-xs mx-auto">
                 Explore our gourmet nutrition, dental chews, and cozy pet beds to spoil your furry companion.
               </p>
               <button
                 onClick={() => setIsCartOpen(false)}
-                className="px-6 py-2.5 rounded-full bg-[#FF784F] text-white text-xs font-bold shadow-md hover:bg-[#E85F36] transition-colors"
+                className="px-6 py-2.5 rounded-full bg-[#E8927C] text-white text-xs font-bold shadow-peach hover:bg-[#D97760] transition-colors"
               >
                 Browse Pet Store
               </button>
@@ -98,7 +98,7 @@ export default function CartDrawer() {
             cart.map((item) => (
               <div
                 key={item.id}
-                className="p-3.5 rounded-2xl bg-[#FFF9F0]/60 border border-gray-100 flex items-center gap-3.5"
+                className="p-3.5 rounded-2xl bg-[#FAF6EE]/60 border border-gray-100 flex items-center gap-3.5"
               >
                 {/* Thumbnail */}
                 <img
@@ -110,7 +110,7 @@ export default function CartDrawer() {
                 {/* Details */}
                 <div className="flex-1 min-w-0">
                   <h5 className="text-xs font-bold text-gray-900 truncate">{item.name}</h5>
-                  <p className="text-[11px] text-[#FF784F] font-bold">₹{item.price}</p>
+                  <p className="text-[11px] text-[#E8927C] font-bold">₹{item.price}</p>
 
                   {/* Quantity Stepper */}
                   <div className="flex items-center gap-2 mt-2">
@@ -130,7 +130,7 @@ export default function CartDrawer() {
                       </button>
                     </div>
 
-                    <span className="text-xs font-extrabold text-[#234C3D] ml-auto">
+                    <span className="text-xs font-extrabold text-[#1B3329] ml-auto">
                       ₹{item.price * item.quantity}
                     </span>
                   </div>
@@ -167,7 +167,7 @@ export default function CartDrawer() {
                   )}
                 </span>
               </div>
-              <div className="flex justify-between text-base font-extrabold text-[#234C3D] pt-2 border-t border-gray-100">
+              <div className="flex justify-between text-base font-extrabold text-[#1B3329] pt-2 border-t border-gray-100">
                 <span>Estimated Total</span>
                 <span className="font-display">₹{grandTotal}</span>
               </div>
@@ -175,7 +175,7 @@ export default function CartDrawer() {
 
             <button
               onClick={() => setIsCheckoutOpen(true)}
-              className="w-full py-4 rounded-full bg-[#FF784F] hover:bg-[#E85F36] text-white font-extrabold text-sm shadow-warm hover:shadow-elevated transition-all flex items-center justify-center gap-2 group"
+              className="w-full py-4 rounded-full bg-[#E8927C] hover:bg-[#D97760] text-white font-extrabold text-sm shadow-peach hover:shadow-elevated transition-all flex items-center justify-center gap-2 group"
             >
               <span>Proceed to Checkout</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
