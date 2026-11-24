@@ -21,8 +21,8 @@ export default function AboutSection() {
                 <Card3DTilt>
                   <div className="rounded-3xl overflow-hidden shadow-card border-2 border-white aspect-[4/5] bg-[#E8EFEA] group">
                     <img
-                      src={ASSETS.floating.catPlay.src}
-                      alt={ASSETS.floating.catPlay.alt}
+                      src={ASSETS.floating?.catPlay?.src || ASSETS.pets.catEditorial}
+                      alt={ASSETS.floating?.catPlay?.alt || "Luxury Cat Grooming"}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                   </div>
@@ -47,8 +47,8 @@ export default function AboutSection() {
                 <Card3DTilt>
                   <div className="rounded-3xl overflow-hidden shadow-card border-2 border-white aspect-[4/5] bg-[#E8EFEA] group">
                     <img
-                      src={ASSETS.floating.puppyPlay.src}
-                      alt={ASSETS.floating.puppyPlay.alt}
+                      src={ASSETS.floating?.puppyPlay?.src || ASSETS.pets.puppyPlay}
+                      alt={ASSETS.floating?.puppyPlay?.alt || "Happy Puppy Playtime"}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                   </div>

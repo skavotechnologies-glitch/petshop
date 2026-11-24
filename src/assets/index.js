@@ -30,6 +30,18 @@ export const ASSETS = {
     puppyPlay: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80'
   },
 
+  // ── Floating & Editorial Pet Photography ─────────────────────────────
+  floating: {
+    puppyPlay: {
+      src: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80',
+      alt: 'Playful golden puppy enjoying playtime'
+    },
+    catPlay: {
+      src: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80',
+      alt: 'Curious British Shorthair cat relaxing'
+    }
+  },
+
   // ── Category Cover Visuals ───────────────────────────────────────────
   categories: {
     dogs: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80',
