@@ -302,12 +302,12 @@ export default function Hero() {
                 >
                   {/* Feathered Radial Mask to Eliminate Rectangular Borders & Hard Edges */}
                   <div
-                    className="relative w-[92%] max-w-[500px] aspect-[4/4.4] flex items-center justify-center overflow-hidden"
+                    className="relative w-[94%] max-w-[520px] aspect-[4/4.5] flex items-center justify-center overflow-hidden"
                     style={{
                       WebkitMaskImage:
-                        'radial-gradient(ellipse 56% 56% at 50% 50%, black 35%, rgba(0,0,0,0.85) 52%, rgba(0,0,0,0.25) 75%, transparent 95%)',
+                        'radial-gradient(ellipse 65% 65% at 50% 50%, black 45%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.2) 80%, transparent 100%)',
                       maskImage:
-                        'radial-gradient(ellipse 56% 56% at 50% 50%, black 35%, rgba(0,0,0,0.85) 52%, rgba(0,0,0,0.25) 75%, transparent 95%)'
+                        'radial-gradient(ellipse 65% 65% at 50% 50%, black 45%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.2) 80%, transparent 100%)'
                     }}
                   >
                     {/* The Living Dog Video Element */}
@@ -320,7 +320,7 @@ export default function Hero() {
                       poster={ASSETS.videos.heroDog.poster}
                       onCanPlay={() => setVideoLoaded(true)}
                       onError={() => setVideoFailed(true)}
-                      className={`w-full h-full object-cover object-[50%_38%] scale-125 filter contrast-[1.06] saturate-[1.12] brightness-[1.02] transition-opacity duration-700 ${
+                      className={`w-full h-full object-cover object-[92%_38%] scale-[1.35] filter contrast-[1.05] saturate-[1.1] brightness-[1.02] transition-opacity duration-700 ${
                         videoLoaded ? 'opacity-100' : 'opacity-90'
                       }`}
                     >
@@ -346,22 +346,21 @@ export default function Hero() {
                       />
                     )}
 
-                    {/* Subtle warm rim-light and dark sage vignette to melt subject into forest green tones */}
-                    <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#142921]/90 via-transparent to-[#12241D]/75" />
+                    {/* Dark Forest Radial Vignette to melt seamlessly into the background */}
                     <div
                       className="absolute inset-0 pointer-events-none"
                       style={{
                         background:
-                          'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(20,41,33,0.6) 65%, rgba(18,36,29,0.92) 88%)'
+                          'radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(20,41,33,0.5) 68%, rgba(18,36,29,0.92) 90%)'
                       }}
                     />
                   </div>
                 </motion.div>
 
-                {/* Floating Badge 1 (Left): "Bath & Blow-Dry" (Matches Reference) */}
+                {/* Floating Badge 1 (Left): "Bath & Blow-Dry" (Repositioned to not obstruct video) */}
                 <motion.div
                   style={{ x: badge1X, y: badge1Y }}
-                  className="absolute bottom-16 -left-4 sm:-left-8 z-30 pointer-events-auto"
+                  className="absolute bottom-10 -left-3 sm:-left-8 z-30 pointer-events-auto"
                 >
                   <FloatingItem duration={5} yOffset={8} rotateOffset={2}>
                     <div className="px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur-md text-[#1A2420] shadow-elevated border border-[#FAF6EE] flex items-center gap-2.5">
@@ -376,10 +375,10 @@ export default function Hero() {
                   </FloatingItem>
                 </motion.div>
 
-                {/* Floating Badge 3 (Top-Left): "Fear-Free Certified" */}
+                {/* Floating Badge 3 (Top-Left): "Fear-Free Certified" (Repositioned to not obstruct video) */}
                 <motion.div
                   style={{ x: badge3X, y: badge3Y }}
-                  className="absolute top-8 left-2 sm:-left-6 z-30 pointer-events-auto"
+                  className="absolute top-6 left-1 sm:-left-8 z-30 pointer-events-auto"
                 >
                   <FloatingItem duration={5.5} yOffset={7} rotateOffset={-1.5} delay={1.2}>
                     <div className="px-3.5 py-2 rounded-2xl bg-[#1B3329]/95 backdrop-blur-md text-white shadow-elevated border border-white/20 flex items-center gap-2">
@@ -391,10 +390,10 @@ export default function Hero() {
                   </FloatingItem>
                 </motion.div>
 
-                {/* Floating Badge 2 (Right): "Haircut & Styling" (Matches Reference) */}
+                {/* Floating Badge 2 (Right): "Haircut & Styling" (Repositioned to not obstruct video) */}
                 <motion.div
                   style={{ x: badge2X, y: badge2Y }}
-                  className="absolute top-20 -right-2 sm:-right-6 z-30 pointer-events-auto"
+                  className="absolute top-12 -right-2 sm:-right-8 z-30 pointer-events-auto"
                 >
                   <FloatingItem duration={6} yOffset={10} rotateOffset={-2} delay={0.6}>
                     <div className="px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur-md text-[#1A2420] shadow-elevated border border-[#FAF6EE] flex items-center gap-2.5">

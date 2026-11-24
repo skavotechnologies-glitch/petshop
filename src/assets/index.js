@@ -11,10 +11,10 @@ export const ASSETS = {
       alt: 'Happy pets enjoying nature in peaceful landscape'
     },
     heroDog: {
-      mp4: '/assets/videos/golden_toy.mp4',
-      fallbackMp4: 'https://cdn.coverr.co/videos/coverr-golden-retriever-chewing-a-toy-7315/1080p.mp4',
+      mp4: '/videos/golden-retriever-hero.mp4',
+      fallbackMp4: '/assets/videos/golden_toy.mp4',
       poster: '/assets/pets/golden_puppy_hero.png',
-      alt: 'Living cinematic Golden Retriever with gentle movement and soft fur'
+      alt: 'Generated living cinematic Golden Retriever hero'
     },
     cinematic: {
       mp4: 'https://cdn.coverr.co/videos/coverr-golden-retriever-on-a-mountain-top-761/1080p.mp4',
