@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
 import { Sparkles, Calendar, ShoppingBag, ArrowRight, Star, Box, Video } from 'lucide-react';
 import { ASSETS } from '../assets';
 import { FloatingItem, MagneticButton } from './MotionHelpers';
@@ -7,6 +7,11 @@ import Hero3DScene from './Hero3DScene';
 
 export default function Hero() {
   const [viewMode, setViewMode] = useState('cinematic'); // 'cinematic' | '3d-mascot'
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(false);
+  const dogVideoRef = useRef(null);
+  const bgVideoRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
 
   // Mouse Parallax Values
   const mouseX = useMotionValue(0);
@@ -27,6 +32,21 @@ export default function Hero() {
   const badge2Y = useTransform(smoothMouseY, [-500, 500], [22, -22]);
   const badge3X = useTransform(smoothMouseX, [-500, 500], [-18, 18]);
   const badge3Y = useTransform(smoothMouseY, [-500, 500], [25, -25]);
+
+  // Tab visibility management for performance & resource savings
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        dogVideoRef.current?.pause();
+        bgVideoRef.current?.pause();
+      } else {
+        dogVideoRef.current?.play().catch(() => {});
+        bgVideoRef.current?.play().catch(() => {});
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
 
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
@@ -54,6 +74,7 @@ export default function Hero() {
       {/* ── 1. Background Video Layer with Dark Sage Overlays ── */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
         <video
+          ref={bgVideoRef}
           autoPlay
           loop
           muted
@@ -62,6 +83,9 @@ export default function Hero() {
           className="w-full h-full object-cover scale-105 opacity-25 mix-blend-screen filter saturate-150"
         >
           <source src={ASSETS.videos.hero.mp4} type="video/mp4" />
+          {ASSETS.videos.hero.fallbackMp4 && (
+            <source src={ASSETS.videos.hero.fallbackMp4} type="video/mp4" />
+          )}
         </video>
 
         {/* Ambient Radial Depth Lighting (Matching Reference) */}
@@ -243,7 +267,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right Column: Large Golden Retriever with Layered Depth & Parallax */}
+          {/* Right Column: Living Cinematic Golden Retriever with Feathered Radial Mask & Parallax */}
           <div className="lg:col-span-6 relative flex items-center justify-center">
             {viewMode === '3d-mascot' ? (
               /* Live Interactive WebGL Mascot */
@@ -251,31 +275,93 @@ export default function Hero() {
                 <Hero3DScene />
               </div>
             ) : (
-              /* Reference Video Visual: Large Golden Retriever with Cutout & Glowing Atmosphere */
-              <div className="relative w-full max-w-[540px] aspect-[4/4.5] flex items-center justify-center">
+              /* Reference Video Visual: Living Golden Retriever Video with Seamless Feathered Blend */
+              <div className="relative w-full max-w-[560px] aspect-[4/4.4] flex items-center justify-center select-none">
                 
                 {/* Ambient Soft Backdrop Glow under the dog */}
-                <div className="absolute inset-10 rounded-full bg-gradient-to-t from-[#E8927C]/30 to-transparent blur-3xl pointer-events-none" />
+                <div className="absolute inset-4 rounded-full bg-gradient-to-t from-[#E8927C]/30 via-[#FAF6EE]/10 to-transparent blur-3xl pointer-events-none" />
+                <div className="absolute -inset-6 rounded-full bg-[#1B362B]/50 blur-2xl pointer-events-none" />
 
-                {/* Main Golden Retriever Cutout Image (Layer 4) with Floating & Parallax */}
+                {/* Main Living Dog Container (Layer 4) with Floating, Scaling & Parallax */}
                 <motion.div
                   style={{ x: dogX, y: dogY }}
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
-                  className="relative z-20 w-full h-full flex items-center justify-center drop-shadow-[0_25px_40px_rgba(0,0,0,0.65)]"
+                  animate={
+                    shouldReduceMotion
+                      ? {}
+                      : {
+                          y: [0, -10, 0],
+                          scale: [1, 1.015, 1]
+                        }
+                  }
+                  transition={{
+                    repeat: Infinity,
+                    duration: 6.5,
+                    ease: 'easeInOut'
+                  }}
+                  className="relative z-20 w-full h-full flex items-center justify-center will-change-transform transform-gpu drop-shadow-[0_25px_45px_rgba(0,0,0,0.7)]"
                 >
-                  <img
-                    src={ASSETS.pets.goldenPuppyHero}
-                    alt="Golden Retriever Puppy - Paws & Polish"
-                    className="w-full h-auto max-h-[500px] object-contain select-none"
-                    loading="eager"
-                  />
+                  {/* Feathered Radial Mask to Eliminate Rectangular Borders & Hard Edges */}
+                  <div
+                    className="relative w-[92%] max-w-[500px] aspect-[4/4.4] flex items-center justify-center overflow-hidden"
+                    style={{
+                      WebkitMaskImage:
+                        'radial-gradient(ellipse 56% 56% at 50% 50%, black 35%, rgba(0,0,0,0.85) 52%, rgba(0,0,0,0.25) 75%, transparent 95%)',
+                      maskImage:
+                        'radial-gradient(ellipse 56% 56% at 50% 50%, black 35%, rgba(0,0,0,0.85) 52%, rgba(0,0,0,0.25) 75%, transparent 95%)'
+                    }}
+                  >
+                    {/* The Living Dog Video Element */}
+                    <video
+                      ref={dogVideoRef}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      poster={ASSETS.videos.heroDog.poster}
+                      onCanPlay={() => setVideoLoaded(true)}
+                      onError={() => setVideoFailed(true)}
+                      className={`w-full h-full object-cover object-[50%_38%] scale-125 filter contrast-[1.06] saturate-[1.12] brightness-[1.02] transition-opacity duration-700 ${
+                        videoLoaded ? 'opacity-100' : 'opacity-90'
+                      }`}
+                    >
+                      <source src={ASSETS.videos.heroDog.mp4} type="video/mp4" />
+                      {ASSETS.videos.heroDog.fallbackMp4 && (
+                        <source src={ASSETS.videos.heroDog.fallbackMp4} type="video/mp4" />
+                      )}
+                      {/* Image fallback inside video tag */}
+                      <img
+                        src={ASSETS.pets.goldenPuppyHero}
+                        alt="Paws & Polish Golden Retriever"
+                        className="w-full h-full object-contain"
+                      />
+                    </video>
+
+                    {/* Resilient fallback image if video fails */}
+                    {videoFailed && (
+                      <img
+                        src={ASSETS.pets.goldenPuppyHero}
+                        alt="Golden Retriever Puppy - Paws & Polish"
+                        className="absolute inset-0 w-full h-full object-contain"
+                        loading="eager"
+                      />
+                    )}
+
+                    {/* Subtle warm rim-light and dark sage vignette to melt subject into forest green tones */}
+                    <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#142921]/90 via-transparent to-[#12241D]/75" />
+                    <div
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background:
+                          'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(20,41,33,0.6) 65%, rgba(18,36,29,0.92) 88%)'
+                      }}
+                    />
+                  </div>
                 </motion.div>
 
                 {/* Floating Badge 1 (Left): "Bath & Blow-Dry" (Matches Reference) */}
                 <motion.div
                   style={{ x: badge1X, y: badge1Y }}
-                  className="absolute bottom-16 -left-4 sm:-left-8 z-30"
+                  className="absolute bottom-16 -left-4 sm:-left-8 z-30 pointer-events-auto"
                 >
                   <FloatingItem duration={5} yOffset={8} rotateOffset={2}>
                     <div className="px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur-md text-[#1A2420] shadow-elevated border border-[#FAF6EE] flex items-center gap-2.5">
@@ -293,7 +379,7 @@ export default function Hero() {
                 {/* Floating Badge 3 (Top-Left): "Fear-Free Certified" */}
                 <motion.div
                   style={{ x: badge3X, y: badge3Y }}
-                  className="absolute top-8 left-2 sm:-left-6 z-30"
+                  className="absolute top-8 left-2 sm:-left-6 z-30 pointer-events-auto"
                 >
                   <FloatingItem duration={5.5} yOffset={7} rotateOffset={-1.5} delay={1.2}>
                     <div className="px-3.5 py-2 rounded-2xl bg-[#1B3329]/95 backdrop-blur-md text-white shadow-elevated border border-white/20 flex items-center gap-2">
@@ -308,7 +394,7 @@ export default function Hero() {
                 {/* Floating Badge 2 (Right): "Haircut & Styling" (Matches Reference) */}
                 <motion.div
                   style={{ x: badge2X, y: badge2Y }}
-                  className="absolute top-20 -right-2 sm:-right-6 z-30"
+                  className="absolute top-20 -right-2 sm:-right-6 z-30 pointer-events-auto"
                 >
                   <FloatingItem duration={6} yOffset={10} rotateOffset={-2} delay={0.6}>
                     <div className="px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur-md text-[#1A2420] shadow-elevated border border-[#FAF6EE] flex items-center gap-2.5">

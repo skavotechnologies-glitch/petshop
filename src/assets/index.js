@@ -2,15 +2,22 @@
 // Inspired by the luxury pet care brand reference
 
 export const ASSETS = {
-  // ── Cinematic Background Videos ──────────────────────────────────────
+  // ── Cinematic Background & Subject Videos ────────────────────────────
   videos: {
     hero: {
-      mp4: 'https://assets.mixkit.co/videos/preview/mixkit-dogs-playing-in-the-park-46346-large.mp4',
+      mp4: '/assets/videos/hero_bg_pets.mp4',
+      fallbackMp4: 'https://cdn.coverr.co/videos/coverr-dog-walking-on-the-grass-4877/1080p.mp4',
       poster: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1920&q=80',
-      alt: 'Happy golden retriever and pets running in nature'
+      alt: 'Happy pets enjoying nature in peaceful landscape'
+    },
+    heroDog: {
+      mp4: '/assets/videos/golden_toy.mp4',
+      fallbackMp4: 'https://cdn.coverr.co/videos/coverr-golden-retriever-chewing-a-toy-7315/1080p.mp4',
+      poster: '/assets/pets/golden_puppy_hero.png',
+      alt: 'Living cinematic Golden Retriever with gentle movement and soft fur'
     },
     cinematic: {
-      mp4: 'https://assets.mixkit.co/videos/preview/mixkit-little-dog-getting-groomed-43093-large.mp4',
+      mp4: 'https://cdn.coverr.co/videos/coverr-golden-retriever-on-a-mountain-top-761/1080p.mp4',
       poster: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1920&q=80',
       alt: 'Artisanal pet grooming with warm water hydrobath and gentle brushing'
     }
