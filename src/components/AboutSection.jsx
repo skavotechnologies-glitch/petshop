@@ -1,26 +1,34 @@
 import React from 'react';
 import { Heart, Sparkles, Award, CheckCircle2, ArrowRight } from 'lucide-react';
 import { statistics } from '../data/testimonials';
+import Card3DTilt from './Card3DTilt';
+import { ASSETS } from '../assets';
 
 export default function AboutSection() {
   return (
     <section id="about" className="py-20 lg:py-28 relative overflow-hidden bg-[#FFF9F0]">
-      {/* Decorative background paw */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Ambient Lighting Orbs */}
+      <div className="absolute top-10 left-10 w-96 h-96 bg-[#FFD66B]/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#FF784F]/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left Column: Visual Collage */}
+          {/* Left Column: Asymmetrical Layered 3D Depth Composition */}
           <div className="lg:col-span-6 relative">
             <div className="grid grid-cols-2 gap-4 sm:gap-6">
               <div className="space-y-4 sm:space-y-6">
-                <div className="rounded-3xl overflow-hidden shadow-card border-2 border-white aspect-[4/5] bg-gray-100">
-                  <img
-                    src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=700&q=80"
-                    alt="Veterinarian & Stylist grooming cat"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-5 rounded-3xl bg-[#234C3D] text-white shadow-card">
+                <Card3DTilt>
+                  <div className="rounded-3xl overflow-hidden shadow-card border-2 border-white aspect-[4/5] bg-gray-100 group">
+                    <img
+                      src={ASSETS.floating.catPlay.src}
+                      alt={ASSETS.floating.catPlay.alt}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </Card3DTilt>
+
+                <div className="p-6 rounded-3xl bg-[#234C3D] text-white shadow-card">
                   <div className="text-3xl font-extrabold text-[#FFD66B] mb-1 font-display">100%</div>
                   <p className="text-xs font-semibold text-white/90">Fear-Free Handling</p>
                   <p className="text-[11px] text-white/60 mt-1">Zero cages, zero harsh chemicals, endless love.</p>
@@ -28,20 +36,23 @@ export default function AboutSection() {
               </div>
 
               <div className="space-y-4 sm:space-y-6 pt-8">
-                <div className="p-5 rounded-3xl bg-[#FF784F] text-white shadow-card">
-                  <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center mb-2">
+                <div className="p-6 rounded-3xl bg-[#FF784F] text-white shadow-card">
+                  <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-2">
                     <Heart className="w-5 h-5 text-white fill-white" />
                   </div>
                   <h4 className="text-sm font-extrabold">Clean & Organic</h4>
-                  <p className="text-[11px] text-white/80 mt-1">All shampoos are paraben-free and tearless.</p>
+                  <p className="text-[11px] text-white/80 mt-1">All shampoos are botanical, paraben-free and tearless.</p>
                 </div>
-                <div className="rounded-3xl overflow-hidden shadow-card border-2 border-white aspect-[4/5] bg-gray-100">
-                  <img
-                    src="https://images.unsplash.com/photo-1535294435445-d7249524ef2e?auto=format&fit=crop&w=700&q=80"
-                    alt="Groomed playful pup"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
+
+                <Card3DTilt>
+                  <div className="rounded-3xl overflow-hidden shadow-card border-2 border-white aspect-[4/5] bg-gray-100 group">
+                    <img
+                      src={ASSETS.floating.puppyPlay.src}
+                      alt={ASSETS.floating.puppyPlay.alt}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </Card3DTilt>
               </div>
             </div>
 
@@ -54,16 +65,17 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* Right Column: Story & Highlights */}
+          {/* Right Column: Editorial Luxury Brand Story */}
           <div className="lg:col-span-6 space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E6F1E9] text-[#234C3D] text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-[#FF784F]" />
-              <span>Our Brand Story</span>
+              <span>Our Brand Philosophy</span>
             </div>
 
+            {/* Exact Headline as specified in prompt Section 8 */}
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#234C3D] tracking-tight leading-tight font-display">
-              More Than a Pet Store.{' '}
-              <span className="text-[#FF784F]">A Place That Feels Like Home.</span>
+              More Than a Pet.{' '}
+              <span className="text-[#FF784F]">A Part of Your Family.</span>
             </h2>
 
             <p className="text-base text-[#252525]/80 leading-relaxed font-normal">

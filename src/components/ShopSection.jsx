@@ -4,10 +4,16 @@ import ProductCard from './ProductCard';
 import Product3DViewerModal from './Product3DViewerModal';
 import { Sparkles, ArrowUpDown, Box } from 'lucide-react';
 
-export default function ShopSection() {
-  const [activeCategory, setActiveCategory] = useState("All Products");
+export default function ShopSection({ preselectedCategory }) {
+  const [activeCategory, setActiveCategory] = useState(preselectedCategory || "All Products");
   const [sortBy, setSortBy] = useState("popular");
   const [selectedProduct3D, setSelectedProduct3D] = useState(null);
+
+  React.useEffect(() => {
+    if (preselectedCategory) {
+      setActiveCategory(preselectedCategory);
+    }
+  }, [preselectedCategory]);
 
   // Filter products by category
   let filtered = activeCategory === "All Products"
