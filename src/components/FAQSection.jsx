@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { faqs } from '../data/faqs';
 import { Plus, Minus, HelpCircle, Sparkles } from 'lucide-react';
 
@@ -27,37 +28,54 @@ export default function FAQSection() {
           </p>
         </div>
 
-        {/* Accordion List */}
+        {/* Accordion List with Motion */}
         <div className="space-y-4">
           {faqs.map((faq) => {
             const isOpen = openId === faq.id;
             return (
               <div
                 key={faq.id}
-                className="rounded-2xl bg-white border border-gray-200/80 shadow-soft overflow-hidden transition-all duration-200"
+                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                  isOpen
+                    ? 'bg-white border-[#E8927C]/60 shadow-peach'
+                    : 'bg-white/80 border-gray-200/80 hover:border-[#1B3329]/30 shadow-soft'
+                }`}
               >
                 <button
                   onClick={() => toggleFAQ(faq.id)}
                   aria-expanded={isOpen}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 hover:bg-[#FAF6EE]/50 transition-colors"
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors"
                 >
-                  <span className="text-base font-extrabold text-[#1B3329]">
+                  <span className={`text-base font-extrabold transition-colors font-display ${isOpen ? 'text-[#1B3329]' : 'text-[#1A2420]'}`}>
                     {faq.question}
                   </span>
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${
-                      isOpen ? 'bg-[#E8927C] text-white' : 'bg-[#FAF6EE] text-[#1B3329]'
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                      isOpen ? 'bg-[#E8927C] text-white shadow-sm' : 'bg-[#FAF6EE] text-[#1B3329]'
                     }`}
                   >
                     {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                  </div>
+                  </motion.div>
                 </button>
 
-                {isOpen && (
-                  <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-[#1A2420]/80 leading-relaxed border-t border-gray-100 animate-fadeIn">
-                    {faq.answer}
-                  </div>
-                )}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-[#1A2420]/80 leading-relaxed border-t border-gray-100">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}
@@ -65,7 +83,7 @@ export default function FAQSection() {
 
         {/* Still Need Assistance CTA */}
         <div className="mt-12 text-center p-8 rounded-3xl bg-white border border-gray-200/80 shadow-soft">
-          <h4 className="text-lg font-extrabold text-[#1B3329]">Have a question not covered here?</h4>
+          <h4 className="text-lg font-extrabold text-[#1B3329] font-display">Have a question not covered here?</h4>
           <p className="text-xs text-[#1A2420]/70 mt-1 max-w-md mx-auto">
             Our certified pet care consultants and master groomers are always happy to advise on your pet's needs.
           </p>

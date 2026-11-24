@@ -98,54 +98,63 @@ export default function CategorySection3D({ onSelectCategory }) {
 
         {/* 6 3D Category Cards Grid with Depth & Tilts */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categories.map((cat) => (
-            <Card3DTilt key={cat.id} className="h-full">
-              <a
-                href="#shop"
-                onClick={() => onSelectCategory && onSelectCategory(cat.filterName)}
-                className={`group block rounded-3xl p-6 bg-gradient-to-br ${cat.gradient} border border-gray-200/70 shadow-soft hover:shadow-peach transition-all duration-300 relative overflow-hidden h-full flex flex-col justify-between`}
-              >
-                {/* Background Shimmer Glow on Hover */}
-                <div className="absolute -right-16 -top-16 w-48 h-48 bg-[#E8927C]/15 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
+          {categories.map((cat, idx) => (
+            <motion.div
+              key={cat.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="h-full"
+            >
+              <Card3DTilt className="h-full">
+                <a
+                  href="#shop"
+                  onClick={() => onSelectCategory && onSelectCategory(cat.filterName)}
+                  className={`group block rounded-3xl p-6 bg-gradient-to-br ${cat.gradient} border border-gray-200/70 shadow-soft hover:shadow-peach transition-all duration-300 relative overflow-hidden h-full flex flex-col justify-between`}
+                >
+                  {/* Background Shimmer Glow on Hover */}
+                  <div className="absolute -right-16 -top-16 w-48 h-48 bg-[#E8927C]/15 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
 
-                <div>
-                  {/* Top Header inside Card */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 rounded-full bg-[#E8927C] text-[10px] font-black uppercase tracking-wider text-white shadow-sm">
-                      {cat.badge}
-                    </span>
-                    <span className="text-xs font-bold text-gray-400">
-                      {cat.count}
-                    </span>
+                  <div>
+                    {/* Top Header inside Card */}
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="px-3 py-1 rounded-full bg-[#E8927C] text-[10px] font-black uppercase tracking-wider text-white shadow-sm">
+                        {cat.badge}
+                      </span>
+                      <span className="text-xs font-bold text-gray-400">
+                        {cat.count}
+                      </span>
+                    </div>
+
+                    <h3 className="text-2xl font-extrabold transition-colors font-display">
+                      {cat.title}
+                    </h3>
+                    <p className="text-xs font-semibold opacity-75 mt-1">
+                      {cat.tagline}
+                    </p>
                   </div>
 
-                  <h3 className="text-2xl font-extrabold transition-colors font-display">
-                    {cat.title}
-                  </h3>
-                  <p className="text-xs font-semibold opacity-75 mt-1">
-                    {cat.tagline}
-                  </p>
-                </div>
-
-                {/* Floating 3D Image with Depth Lift on Hover */}
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden my-6 shadow-md border-2 border-white bg-white group-hover:-translate-y-2 group-hover:scale-105 transition-all duration-500">
-                  <img
-                    src={cat.image}
-                    alt={cat.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-
-                {/* Explore Action Button */}
-                <div className="pt-2 flex items-center justify-between text-xs font-extrabold transition-colors">
-                  <span>Explore Collection</span>
-                  <div className="w-8 h-8 rounded-full bg-[#1B3329] group-hover:bg-[#E8927C] text-white flex items-center justify-center shadow-sm transition-all duration-300 group-hover:translate-x-1">
-                    <ArrowRight className="w-4 h-4" />
+                  {/* Floating 3D Image with Depth Lift on Hover */}
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden my-6 shadow-md border-2 border-white bg-white group-hover:-translate-y-2 group-hover:scale-105 transition-all duration-500">
+                    <img
+                      src={cat.image}
+                      alt={cat.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
-                </div>
-              </a>
-            </Card3DTilt>
+
+                  {/* Explore Action Button */}
+                  <div className="pt-2 flex items-center justify-between text-xs font-extrabold transition-colors">
+                    <span>Explore Collection</span>
+                    <div className="w-8 h-8 rounded-full bg-[#1B3329] group-hover:bg-[#E8927C] text-white flex items-center justify-center shadow-sm transition-all duration-300 group-hover:translate-x-1">
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                </a>
+              </Card3DTilt>
+            </motion.div>
           ))}
         </div>
 

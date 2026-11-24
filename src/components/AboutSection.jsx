@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Heart, Sparkles, Award, CheckCircle2, ArrowRight } from 'lucide-react';
 import { statistics } from '../data/testimonials';
 import Card3DTilt from './Card3DTilt';
@@ -15,7 +16,13 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Column: Asymmetrical Editorial Photography Composition (Matching Reference) */}
-          <div className="lg:col-span-6 relative">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 relative"
+          >
             <div className="grid grid-cols-2 gap-4 sm:gap-6">
               <div className="space-y-4 sm:space-y-6">
                 <Card3DTilt>
@@ -63,10 +70,16 @@ export default function AboutSection() {
                 Since 2018
               </span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Editorial Luxury Brand Story (Reference Section 5) */}
-          <div className="lg:col-span-6 space-y-6">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 space-y-6"
+          >
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1B3329]/10 text-[#1B3329] text-xs font-extrabold uppercase tracking-wider border border-[#1B3329]/20">
               <Sparkles className="w-3.5 h-3.5 text-[#E8927C]" />
               <span>Our Brand Philosophy</span>
@@ -132,7 +145,7 @@ export default function AboutSection() {
               </a>
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
       </div>

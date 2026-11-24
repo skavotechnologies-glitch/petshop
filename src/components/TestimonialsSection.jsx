@@ -1,11 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { testimonials } from '../data/testimonials';
-import { Star, Sparkles, Quote, Heart } from 'lucide-react';
+import { Star, Sparkles, Quote, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
+import Card3DTilt from './Card3DTilt';
 
 export default function TestimonialsSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-advance every 5.5 seconds unless paused by hover
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5500);
+
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const current = testimonials[currentIndex];
+
   return (
-    <section className="py-20 lg:py-28 bg-[#FAF6EE] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="testimonials"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      className="py-24 lg:py-32 bg-[#FAF6EE] relative overflow-hidden"
+    >
+      {/* Ambient Lighting Orbs */}
+      <div className="absolute top-1/4 -left-20 w-80 h-80 bg-[#E8927C]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 -right-20 w-80 h-80 bg-[#1B3329]/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
@@ -21,51 +56,123 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        {/* 4 Testimonial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {testimonials.map((review) => (
-            <div
-              key={review.id}
-              className="p-6 sm:p-7 rounded-3xl bg-white border border-gray-200/80 hover:border-[#E8927C]/50 shadow-soft hover:shadow-peach transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5"
+        {/* Featured Testimonial Hero Card + Carousel */}
+        <div className="max-w-4xl mx-auto">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current.id}
+              initial={{ opacity: 0, scale: 0.96, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: -15 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="space-y-4">
-                {/* Top Rating & Quote Icon */}
-                <div className="flex items-center justify-between">
-                  <div className="flex text-[#F3C87A]">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-[#F3C87A]" />
-                    ))}
+              <Card3DTilt>
+                <div className="p-8 sm:p-12 rounded-[2.5rem] bg-white border border-gray-200/80 shadow-card hover:shadow-peach transition-all duration-300 relative overflow-hidden">
+                  {/* Decorative oversized quotation mark in background */}
+                  <Quote className="absolute -top-4 -right-4 w-32 h-32 text-[#FAF6EE] pointer-events-none" />
+
+                  <div className="relative z-10 space-y-6">
+                    {/* Stars and Service Badge */}
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <div className="flex items-center gap-1.5">
+                        <div className="flex text-[#F59E0B]">
+                          {[...Array(current.rating)].map((_, i) => (
+                            <Star key={i} className="w-4 sm:w-5 h-4 sm:h-5 fill-[#F59E0B]" />
+                          ))}
+                        </div>
+                        <span className="text-xs font-extrabold text-[#1B3329] ml-1">5.0 Star Experience</span>
+                      </div>
+
+                      <span className="px-3.5 py-1.5 rounded-full bg-[#FAF6EE] border border-gray-200 text-xs font-extrabold text-[#1B3329]">
+                        🐾 {current.service}
+                      </span>
+                    </div>
+
+                    {/* Testimonial Quote */}
+                    <blockquote className="text-base sm:text-xl lg:text-2xl text-[#1B3329] font-medium leading-relaxed font-serif italic">
+                      "{current.content}"
+                    </blockquote>
+
+                    {/* Pet Parent & Pet Info */}
+                    <div className="pt-6 border-t border-gray-100 flex items-center justify-between flex-wrap gap-4">
+                      <div className="flex items-center gap-4">
+                        <img
+                          src={current.avatar}
+                          alt={current.name}
+                          className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-md shrink-0"
+                        />
+                        <div>
+                          <h4 className="text-base font-extrabold text-[#1B3329] font-display">{current.name}</h4>
+                          <p className="text-xs text-[#E8927C] font-bold">
+                            Devoted parent of <span className="underline decoration-wavy underline-offset-2">{current.petName}</span> ({current.petBreed})
+                          </p>
+                          <p className="text-[11px] text-gray-400 mt-0.5">Verified Client Review • Indiranagar Salon</p>
+                        </div>
+                      </div>
+
+                      {/* Navigation Controls */}
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={handlePrev}
+                          aria-label="Previous testimonial"
+                          className="w-11 h-11 rounded-full bg-[#FAF6EE] hover:bg-[#E8927C] hover:text-white text-[#1B3329] transition-all flex items-center justify-center shadow-sm"
+                        >
+                          <ChevronLeft className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={handleNext}
+                          aria-label="Next testimonial"
+                          className="w-11 h-11 rounded-full bg-[#FAF6EE] hover:bg-[#E8927C] hover:text-white text-[#1B3329] transition-all flex items-center justify-center shadow-sm"
+                        >
+                          <ChevronRight className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <Quote className="w-6 h-6 text-[#E8927C]/30" />
                 </div>
+              </Card3DTilt>
+            </motion.div>
+          </AnimatePresence>
 
-                {/* Review Paragraph */}
-                <p className="text-xs text-[#1A2420]/85 leading-relaxed italic">
-                  "{review.content}"
-                </p>
+          {/* Dots Indicator */}
+          <div className="flex items-center justify-center gap-2 mt-8">
+            {testimonials.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={`transition-all duration-300 rounded-full ${
+                  idx === currentIndex
+                    ? 'w-8 h-2.5 bg-[#E8927C]'
+                    : 'w-2.5 h-2.5 bg-[#1B3329]/20 hover:bg-[#1B3329]/40'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
 
-                {/* Service Tag */}
-                <span className="inline-block px-2.5 py-1 rounded-md bg-[#FAF6EE] border border-gray-200 text-[10px] font-bold text-[#1B3329]">
-                  🐾 {review.service}
-                </span>
+        {/* 4 Quick Client Teaser Pills below */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-12 max-w-5xl mx-auto">
+          {testimonials.map((review, i) => (
+            <button
+              key={review.id}
+              onClick={() => setCurrentIndex(i)}
+              className={`p-3.5 rounded-2xl text-left border transition-all flex items-center gap-3 ${
+                i === currentIndex
+                  ? 'bg-white border-[#E8927C] shadow-peach ring-2 ring-[#E8927C]/20'
+                  : 'bg-white/70 border-gray-200/60 hover:bg-white text-gray-600'
+              }`}
+            >
+              <img
+                src={review.avatar}
+                alt={review.name}
+                className="w-9 h-9 rounded-full object-cover shrink-0"
+              />
+              <div className="min-w-0">
+                <p className="text-xs font-extrabold text-[#1B3329] truncate">{review.name}</p>
+                <p className="text-[10px] text-[#E8927C] font-semibold truncate">{review.petName} ({review.petBreed})</p>
               </div>
-
-              {/* Author & Pet */}
-              <div className="pt-5 mt-5 border-t border-gray-100 flex items-center gap-3">
-                <img
-                  src={review.avatar}
-                  alt={review.name}
-                  className="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0"
-                />
-                <div className="min-w-0">
-                  <h4 className="text-xs font-extrabold text-[#1B3329] truncate">{review.name}</h4>
-                  <p className="text-[11px] text-[#E8927C] font-bold truncate">
-                    Parent of {review.petName}
-                  </p>
-                  <p className="text-[10px] text-gray-400 truncate">{review.petBreed}</p>
-                </div>
-              </div>
-            </div>
+            </button>
           ))}
         </div>
 

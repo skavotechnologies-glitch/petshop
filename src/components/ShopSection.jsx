@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { products, productCategories } from '../data/products';
 import ProductCard from './ProductCard';
 import Product3DViewerModal from './Product3DViewerModal';
@@ -85,15 +86,26 @@ export default function ShopSection({ preselectedCategory }) {
         </div>
 
         {/* Products Grid with 3D Tilt Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {filtered.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onInspect3D={(p) => setSelectedProduct3D(p)}
-            />
-          ))}
-        </div>
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <AnimatePresence>
+            {filtered.map((product) => (
+              <motion.div
+                key={product.id}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                className="h-full"
+              >
+                <ProductCard
+                  product={product}
+                  onInspect3D={(p) => setSelectedProduct3D(p)}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
         {/* Bottom Banner on Free Delivery */}
         <div className="mt-16 p-6 sm:p-8 rounded-3xl bg-[#FAF6EE] border border-gray-200/80 shadow-soft flex flex-col sm:flex-row items-center justify-between gap-6">

@@ -14,6 +14,7 @@ export default function BookingForm({ preselectedService }) {
     email: '',
     petName: '',
     petType: 'Dog',
+    petSize: 'Medium',
     breed: '',
     service: preselectedService || 'Full Royal Grooming',
     date: today,
@@ -42,8 +43,10 @@ export default function BookingForm({ preselectedService }) {
     }
   }, [preselectedService]);
 
-  // Find price estimate
+  // Find price estimate with size multiplier
   const currentServiceObj = services.find((s) => s.title === formData.service) || services[0];
+  const sizeMultiplier = formData.petSize === 'Small' ? 0.85 : formData.petSize === 'Large' ? 1.25 : 1.0;
+  const calculatedPrice = Math.round(currentServiceObj.price * sizeMultiplier);
 
   const validate = () => {
     const newErrors = {};
@@ -74,7 +77,7 @@ export default function BookingForm({ preselectedService }) {
     const bookingRecord = {
       ...formData,
       bookingRef,
-      servicePrice: currentServiceObj.priceLabel,
+      servicePrice: `₹${calculatedPrice}`,
       createdAt: new Date().toISOString()
     };
 
@@ -300,6 +303,33 @@ export default function BookingForm({ preselectedService }) {
                     {errors.breed && <p className="text-[10px] text-red-500 mt-1">{errors.breed}</p>}
                   </div>
                 </div>
+
+                {/* Pet Size Selection */}
+                <div className="mt-4">
+                  <label className="block text-xs font-bold text-gray-700 mb-1.5">
+                    Pet Size & Weight Category
+                  </label>
+                  <div className="grid grid-cols-3 gap-2">
+                    {[
+                      { id: 'Small', label: 'Small (<10 kg)' },
+                      { id: 'Medium', label: 'Medium (10–25 kg)' },
+                      { id: 'Large', label: 'Large (25+ kg)' }
+                    ].map((s) => (
+                      <button
+                        key={s.id}
+                        type="button"
+                        onClick={() => setFormData({ ...formData, petSize: s.id })}
+                        className={`py-2 px-3 rounded-xl text-xs font-extrabold border transition-all ${
+                          formData.petSize === s.id
+                            ? 'bg-[#1B3329] text-white border-[#1B3329] shadow-sm'
+                            : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
+                        }`}
+                      >
+                        {s.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               {/* Service Selection */}
@@ -451,7 +481,7 @@ export default function BookingForm({ preselectedService }) {
                 <div>
                   <span className="text-xs text-gray-500">Selected Service:</span>
                   <div className="font-extrabold text-sm text-[#1B3329]">
-                    {formData.service} <span className="text-[#E8927C]">({currentServiceObj.priceLabel})</span>
+                    {formData.service} <span className="text-[#E8927C]">(₹{calculatedPrice} • {formData.petSize})</span>
                   </div>
                 </div>
 

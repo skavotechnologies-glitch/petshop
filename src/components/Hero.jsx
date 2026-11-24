@@ -25,6 +25,8 @@ export default function Hero() {
   const badge1Y = useTransform(smoothMouseY, [-500, 500], [-20, 20]);
   const badge2X = useTransform(smoothMouseX, [-500, 500], [30, -30]);
   const badge2Y = useTransform(smoothMouseY, [-500, 500], [22, -22]);
+  const badge3X = useTransform(smoothMouseX, [-500, 500], [-18, 18]);
+  const badge3Y = useTransform(smoothMouseY, [-500, 500], [25, -25]);
 
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
@@ -284,6 +286,21 @@ export default function Hero() {
                         <p className="text-xs font-extrabold text-[#1B3329]">Bath & Blow-Dry</p>
                         <p className="text-[10px] text-gray-500 font-medium">Aromatic hydrobath</p>
                       </div>
+                    </div>
+                  </FloatingItem>
+                </motion.div>
+
+                {/* Floating Badge 3 (Top-Left): "Fear-Free Certified" */}
+                <motion.div
+                  style={{ x: badge3X, y: badge3Y }}
+                  className="absolute top-8 left-2 sm:-left-6 z-30"
+                >
+                  <FloatingItem duration={5.5} yOffset={7} rotateOffset={-1.5} delay={1.2}>
+                    <div className="px-3.5 py-2 rounded-2xl bg-[#1B3329]/95 backdrop-blur-md text-white shadow-elevated border border-white/20 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#E8927C] animate-ping" />
+                      <span className="text-[11px] font-extrabold text-[#FAF6EE] tracking-wide">
+                        🌿 100% Fear-Free Sanctuary
+                      </span>
                     </div>
                   </FloatingItem>
                 </motion.div>
