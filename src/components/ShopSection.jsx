@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { products, productCategories } from '../data/products';
 import ProductCard from './ProductCard';
-import { Sparkles, ShoppingBag, Filter, ArrowUpDown } from 'lucide-react';
+import Product3DViewerModal from './Product3DViewerModal';
+import { Sparkles, ArrowUpDown, Box } from 'lucide-react';
 
 export default function ShopSection() {
   const [activeCategory, setActiveCategory] = useState("All Products");
   const [sortBy, setSortBy] = useState("popular");
+  const [selectedProduct3D, setSelectedProduct3D] = useState(null);
 
   // Filter products by category
   let filtered = activeCategory === "All Products"
@@ -28,13 +30,13 @@ export default function ShopSection() {
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E6F1E9] text-[#234C3D] text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5 text-[#FF784F]" />
-            <span>Curated Pet Boutique</span>
+            <span>Curated Pet Boutique & 3D Showcase</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#234C3D] tracking-tight font-display">
             Everything Your Furry Friend <span className="text-[#FF784F]">Needs.</span>
           </h2>
           <p className="text-sm sm:text-base text-[#252525]/75 leading-relaxed">
-            Wholesome nutrition, intelligent cognitive toys, orthopedic beds, and salon-grade grooming formulas handpicked by our veterinarians.
+            Wholesome nutrition, intelligent cognitive toys, orthopedic beds, and salon-grade grooming formulas. Tap <span className="font-bold text-[#FF784F]">"3D View"</span> on any card to rotate 360°!
           </p>
         </div>
 
@@ -76,10 +78,14 @@ export default function ShopSection() {
           </div>
         </div>
 
-        {/* Products Grid */}
+        {/* Products Grid with 3D Tilt Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {filtered.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              onInspect3D={(p) => setSelectedProduct3D(p)}
+            />
           ))}
         </div>
 
@@ -103,6 +109,14 @@ export default function ShopSection() {
         </div>
 
       </div>
+
+      {/* 3D Product Interactive 360° Modal */}
+      {selectedProduct3D && (
+        <Product3DViewerModal
+          product={selectedProduct3D}
+          onClose={() => setSelectedProduct3D(null)}
+        />
+      )}
     </section>
   );
 }

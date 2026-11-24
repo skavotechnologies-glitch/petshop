@@ -1,165 +1,81 @@
-# 🐾 PAWORA — Luxury Pet Care & Grooming Sanctuary
+# 🐾 PAWORA — Luxury 3D Pet Care & Grooming Sanctuary
 
-A world-class, premium, modern, and conversion-focused **Pet Store & Pet Grooming Web Application** built with **React.js, Vite, Tailwind CSS, Framer Motion, and Lucide Icons**.
+A world-class, premium, modern, and conversion-focused **3D Animated Pet Store & Pet Grooming Web Application** built with **React.js, Three.js, React Three Fiber, Drei, Lenis Smooth Scroll, Tailwind CSS, Framer Motion, and Lucide Icons**.
 
 ---
 
 ## 🎨 Design Vision & Brand Identity
 
-- **Brand Name**: **PAWORA** (Fictional luxury pet-care brand)
+- **Brand Name**: **PAWORA** (*Fictional Luxury Pet Sanctuary & Boutique*)
 - **Tagline**: *"Because Every Paw Deserves a Little Extra Love."*
 - **Color Palette**:
   - **Primary**: `#FF784F` (Vibrant warm coral/orange)
-  - **Secondary**: `#234C3D` (Deep forest green)
+  - **Secondary**: `#234C3D` (Deep royal forest green)
   - **Background**: `#FFF9F0` (Warm organic cream)
   - **Accent**: `#FFD66B` (Soft honey yellow)
-  - **Text**: `#252525` (Charcoal black)
+  - **Text**: `#252525` (Charcoal)
   - **Soft Green**: `#E6F1E9` (Calming pastel green)
-- **Typography**: Google Font **Plus Jakarta Sans** with bold expressive headings and clean readable paragraphs.
+- **Typography**: Google Font **Plus Jakarta Sans** with expressive headings and clean readable paragraphs.
 
 ---
 
-## ✨ Features & Architecture
+## ✨ 3D & High-Animation Features
 
-### 1. 🌟 Hero Section
-- Bold headline: *"Because Every Paw Deserves a Little Extra Love."*
-- Supporting copy: *"From professional grooming to everyday essentials, everything your furry family member needs is right here."*
-- CTAs: **"Explore Our Services"** & **"Shop for Your Pet"**.
-- Large, high-resolution dog and cat imagery with floating highlight cards (*"Professional Grooming"*, *"Happy Pets, Happy Parents"*, *"Loved by 500+ Pet Families"*).
+### 1. 🐕 Live Interactive 3D Hero Mascot (`Hero3DScene.jsx`)
+- Built with **Three.js & React Three Fiber**:
+  - Stylized 3D Golden Puppy mascot whose head and eyes **track the user's mouse cursor in real-time**!
+  - Floppy ear physics with harmonic bounce.
+  - Continuously wagging tail with natural sinusoidal swing.
+  - Floating 3D metallic dog bone, sparkle star, and iridescent spa bubbles with refractive materials.
+  - **Interactive Click**: Tap on the puppy to trigger a 360° backflip spin, celebratory heart particles, and speech bubble!
 
-### 2. 🛡️ Trust & Highlights Section
-- Four key trust pillars:
-  1. **Professional Pet Care** (Veterinary-grade hygiene standards)
-  2. **Experienced Grooming Team** (Fear-free certified master stylists)
-  3. **Quality Pet Products** (Organic nutrition & hypoallergenic formulas)
-  4. **Pet-Friendly Experience** (Cage-free, calm acoustic ambiance)
+### 2. 🌊 Lenis Kinetic Smooth Scrolling (`SmoothScroll.jsx`)
+- Premium 60–120 FPS kinetic inertia scroll smoothing for an Awwwards-style feel without scroll stutter.
 
-### 3. 🏡 About Us Section
-- Headline: *"More Than a Pet Store. A Place That Feels Like Home."*
-- Brand story, fear-free philosophy, and 3 key statistics:
-  - **500+** Happy Pet Families
-  - **1,000+** Grooming Sessions
-  - **100%** Love for Pets
+### 3. 🐾 Custom Interactive Pet Cursor & Ambient Particles (`CustomCursor.jsx`)
+- Custom magnetic cursor with a trailing outer glow ring that reacts to buttons, links, and cards.
+- Emits playful glowing paw particles as you move your mouse across the website.
 
-### 4. ✂️ Grooming Services Menu (6 Service Cards)
-- **Full Grooming** (₹999 onwards) — Complete makeover with organic bath, haircut & styling.
-- **Bath & Blow Dry** (₹499 onwards) — Aromatic warm bath, gentle fluff dry & brush.
-- **Haircut & Styling** (₹699 onwards) — Breed-specific customized scissor trims.
-- **Nail Clipping & Buffing** (₹199 onwards) — Safe, painless trimming & diamond buffing.
-- **Ear Cleaning & Hygiene** (₹199 onwards) — Botanical antibacterial wash & check.
-- **Luxury Spa Treatment** (₹1,299 onwards) — Dead sea mud wrap, blueberry facial & paw massage.
-- Each card includes duration, features checklist, price, and one-click pre-selection for the booking form.
+### 4. 🎴 3D Gyroscopic Card Tilt with Specular Glare (`Card3DTilt.jsx`)
+- Custom 3D perspective tilt (`rotateX`, `rotateY`) on all **Grooming Service Cards** and **Product Cards**.
+- Dynamic specular glass glare sheen that moves across the card as you tilt it.
 
-### 5. 📅 Interactive Appointment Booking Form
-- **All 10 required fields**:
-  1. Customer Name
-  2. Phone Number
-  3. Email Address
-  4. Pet Name
-  5. Pet Type (Dog / Cat / Other)
-  6. Breed / Size
-  7. Select Grooming Service (with dynamic estimated price)
-  8. Preferred Date (with past-date prevention)
-  9. Preferred Time Slot
-  10. Special Instructions / Temperament notes
-- **Features**:
-  - Live price calculation
-  - Client-side validation
-  - Celebratory confetti on confirmation
-  - Generates unique reference code (e.g. `PWR-2026-4821`)
-  - LocalStorage persistence
-  - Direct WhatsApp enquiry button with pre-filled message
+### 5. 🎬 Cinematic Video Showcase & Interactive Makeover Slider (`VideoExperienceSection.jsx`)
+- High-definition video player showing live salon pet pampering sessions with play/pause and audio controls.
+- **Interactive Before & After Makeover Slider**: Drag the slider left and right to inspect a tangled puppy transformed into an impeccably styled show dog!
 
-### 6. 🛍️ Curated Pet Store & Product Catalog
-- 14 realistic sample products across 6 categories:
-  - Dog Food, Cat Food, Toys, Accessories, Grooming Products, Beds & Comfort
-- Interactive category filtering, sorting (Popular, Rating, Price: Low-to-High, High-to-Low)
-- Product cards with star ratings, badges, discount price comparisons, Add to Bag, and Wishlist heart toggling.
-
-### 7. 🛒 Shopping Bag & Simulated Checkout
-- Flyout slide-over cart drawer with free delivery progress bar (orders over ₹999 get free shipping).
-- Quantity controls (`+` / `-`), item removal, live tax & shipping breakdown.
-- Simulated checkout modal collecting delivery details with zero real payment risk.
-
-### 8. 📸 Pet Moments Gallery & Lightbox
-- High-res images of dogs enjoying baths, calm cats, breed haircuts, and happy pet parents.
-- Interactive modal lightbox preview with descriptions and category pills.
-
-### 9. 💬 Customer Testimonials & ❓ FAQs
-- 4 heartfelt pet parent stories with pet names, breeds, and star ratings.
-- Interactive FAQ accordion answering top customer questions (services, booking, cats & dogs, what to bring).
-
-### 10. 📞 Contact Section & 💬 Floating WhatsApp
-- Address, phone numbers, email, opening hours, Google Maps placeholder preview, and instant contact form.
-- Floating WhatsApp button with hover tooltip and pre-filled chat link.
+### 6. 📦 3D 360° Product Inspection Viewer (`Product3DViewerModal.jsx`)
+- Click **"3D View"** on any product in the boutique to open an interactive 3D OrbitControls canvas.
+- Rotate packaging 360°, inspect textures and ingredients, toggle auto-spin, and add to bag directly from the 3D viewer!
 
 ---
 
-## 🚀 Quick Start Guide
+## 🌟 Comprehensive Sections
 
-### 1. Install Dependencies
-```bash
-npm install
-```
+1. **Sticky Navigation Bar** ([src/components/Navbar.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/Navbar.jsx))
+2. **Interactive 3D Hero Section** ([src/components/Hero.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/Hero.jsx))
+3. **Trust & Highlights** ([src/components/TrustHighlights.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/TrustHighlights.jsx))
+4. **About Us Section** ([src/components/AboutSection.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/AboutSection.jsx))
+5. **Grooming Services Catalogue** ([src/components/ServicesSection.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/ServicesSection.jsx))
+6. **Cinematic Video & Before/After Experience** ([src/components/VideoExperienceSection.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/VideoExperienceSection.jsx))
+7. **Online Appointment Booking with Confetti** ([src/components/BookingForm.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/BookingForm.jsx))
+8. **Pet Products Store with 3D Preview** ([src/components/ShopSection.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/ShopSection.jsx))
+9. **Shopping Bag & Simulated Checkout** ([src/components/CartDrawer.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/CartDrawer.jsx) & [src/components/CheckoutModal.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/CheckoutModal.jsx))
+10. **Why Choose Us Section** ([src/components/WhyChooseUs.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/WhyChooseUs.jsx))
+11. **Gallery with Modal Lightbox** ([src/components/GallerySection.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/GallerySection.jsx))
+12. **Customer Testimonials & FAQ Accordion** ([src/components/TestimonialsSection.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/TestimonialsSection.jsx) & [src/components/FAQSection.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/FAQSection.jsx))
+13. **Contact Details & Floating WhatsApp** ([src/components/ContactSection.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/ContactSection.jsx) & [src/components/WhatsAppButton.jsx](file:///c:/Users/PALANI%20KATHIRVEL/OneDrive/Desktop/petshop/src/components/WhatsAppButton.jsx))
 
-### 2. Start the Development Server
+---
+
+## 🚀 How to Run
+
 ```bash
+# 1. Start the Vite development server
 npm run dev
-```
-Open **`http://localhost:3000`** in your browser.
 
-### 3. Build for Production
-```bash
+# 2. Or build for production
 npm run build
 ```
 
----
-
-## 📂 Project Structure
-
-```
-petshop/
-├── index.html
-├── package.json
-├── tailwind.config.js
-├── postcss.config.js
-├── vite.config.js
-├── README.md
-└── src/
-    ├── main.jsx
-    ├── App.jsx
-    ├── index.css
-    ├── context/
-    │   └── CartContext.jsx
-    ├── data/
-    │   ├── products.js
-    │   ├── services.js
-    │   ├── testimonials.js
-    │   ├── faqs.js
-    │   └── gallery.js
-    ├── components/
-    │   ├── Navbar.jsx
-    │   ├── Footer.jsx
-    │   ├── Hero.jsx
-    │   ├── TrustHighlights.jsx
-    │   ├── AboutSection.jsx
-    │   ├── ServicesSection.jsx
-    │   ├── BookingForm.jsx
-    │   ├── ShopSection.jsx
-    │   ├── ProductCard.jsx
-    │   ├── CartDrawer.jsx
-    │   ├── CheckoutModal.jsx
-    │   ├── WhyChooseUs.jsx
-    │   ├── GallerySection.jsx
-    │   ├── TestimonialsSection.jsx
-    │   ├── FAQSection.jsx
-    │   ├── ContactSection.jsx
-    │   ├── SearchModal.jsx
-    │   ├── WhatsAppButton.jsx
-    │   └── Toast.jsx
-    └── pages/
-        ├── Home.jsx
-        ├── ServicesPage.jsx
-        ├── ShopPage.jsx
-        └── BookingPage.jsx
-```
+Open **`http://localhost:3000`** in your browser.
